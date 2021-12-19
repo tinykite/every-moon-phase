@@ -5,16 +5,8 @@ interface MoonPhaseProps {
   phase: MoonPhase;
 }
 
-// const getMoonPhaseLabel = (phase: MoonPhase): string => {
-//   // Split moon_phase into two words and capitalize the first letter of each word
-//   return phase.toLowerCase().split('_').map(function(word) {
-//     return (word.charAt(0).toUpperCase() + word.slice(1));
-//   }).join(' ');
-// }
-
 const Label = (props: MoonPhaseProps) => {
   const {phase} = props;
-  // const label = getMoonPhaseLabel(phase)
   return (
     <div className="sr-only">
     <p>Current Moon Phase:</p>
