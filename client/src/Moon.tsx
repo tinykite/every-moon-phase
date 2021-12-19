@@ -16,6 +16,8 @@ const Label = (props: MoonPhaseProps) => {
 }
 
 const MoonContainer = styled.div`
+  display: flex; 
+  justify-content: center;
   margin: 0 30px;
 
   @media (min-width: 720px) {
