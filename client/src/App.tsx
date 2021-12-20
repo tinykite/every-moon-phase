@@ -3,7 +3,11 @@ import { Moon } from "./Moon";
 import styled from "styled-components";
 import GlobalCSS from "./global";
 
-const { REACT_APP_SERVER_URL } = process.env;
+const { REACT_APP_SERVER_LOCAL_URL, REACT_APP_SERVER_PROD_URL} = process.env
+const serverURL = process.env.NODE_ENV === 'production' ? REACT_APP_SERVER_PROD_URL :  REACT_APP_SERVER_LOCAL_URL
+
+console.log(process.env.NODE_ENV)
+console.log(REACT_APP_SERVER_PROD_URL)
 
 const MoonContainer = styled.div`
   background: black;
@@ -28,9 +32,10 @@ const App: React.FC = () => {
   const [activeMoonPhase, setActiveMoonPhase] = useState<MoonPhase | null>(
     null
   );
+  
 
   useEffect(() => {
-    fetch(REACT_APP_SERVER_URL as string)
+    fetch(serverURL as string)
       .then((response) => response.json())
       .then((data) => setActiveMoonPhase(data.phase));
   }, []);
