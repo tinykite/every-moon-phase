@@ -8,6 +8,9 @@
       "name": "aws",
       "runtime": "nodejs14.x",
       "lambdaHashingVersion": "20201221",
+      "httpApi": {
+        "cors": true
+      },
       "stage": "dev",
       "region": "us-east-1",
       "versionFunctions": true,
@@ -174,7 +177,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/moon-phase-server/dev/1640028384095-2021-12-20T19:26:24.095Z/moon-phase-server.zip"
+                "S3Key": "serverless/moon-phase-server/dev/1643043448859-2022-01-24T16:57:28.859Z/moon-phase-server.zip"
               },
               "Handler": "handler.handler",
               "Runtime": "nodejs14.x",
@@ -192,21 +195,43 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionTxB4sjPpl5lguCJpbHbmH8BIKR8hIPQEfMB6AmFAVY": {
+          "ApiLambdaVersionX12ANCQdO3MYFSzPtNDGt8XuJ2zuoB2vxMzzBRA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "H9BTz5qc1ckAME/Vmk4AWSZKywWGwNeX/cy5F9kswkE="
+              "CodeSha256": "dj3rEcATFwS/MTUbfIGF4rkhLFgdOZsaZnlNic1oT8Q="
             }
           },
           "HttpApi": {
             "Type": "AWS::ApiGatewayV2::Api",
             "Properties": {
               "Name": "dev-moon-phase-server",
-              "ProtocolType": "HTTP"
+              "ProtocolType": "HTTP",
+              "CorsConfiguration": {
+                "AllowHeaders": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "AllowMethods": [
+                  "OPTIONS",
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "PATCH",
+                  "HEAD",
+                  "DELETE"
+                ],
+                "AllowOrigins": [
+                  "*"
+                ]
+              }
             }
           },
           "HttpApiStage": {
@@ -307,7 +332,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionTxB4sjPpl5lguCJpbHbmH8BIKR8hIPQEfMB6AmFAVY"
+              "Ref": "ApiLambdaVersionX12ANCQdO3MYFSzPtNDGt8XuJ2zuoB2vxMzzBRA"
             },
             "Export": {
               "Name": "sls-moon-phase-server-dev-ApiLambdaFunctionQualifiedArn"
@@ -457,7 +482,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionTxB4sjPpl5lguCJpbHbmH8BIKR8hIPQEfMB6AmFAVY"
+        "versionLogicalId": "ApiLambdaVersionX12ANCQdO3MYFSzPtNDGt8XuJ2zuoB2vxMzzBRA"
       }
     },
     "configValidationMode": "warn",
@@ -485,7 +510,7 @@
     "artifact": "/Users/dakotasexton/code/every-moon-phase/server/.serverless/moon-phase-server.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/moon-phase-server/dev/1640028384095-2021-12-20T19:26:24.095Z",
+    "artifactDirectoryName": "serverless/moon-phase-server/dev/1643043448859-2022-01-24T16:57:28.859Z",
     "artifact": "moon-phase-server.zip"
   }
 }
